@@ -54,5 +54,6 @@ jobs:
           tags: |
             latest
             ${{ steps.calc_tag.outputs.name }}
+          push: true
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
