@@ -52,7 +52,7 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ github.repository_owner }}/certbot-with-dns_valuedomain:latest
-            ${{ github.repository_owner }}/certbot-with-dns_valuedomain:${{ steps.calc_tag.outputs.name }}
+            ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:latest
+            ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:${{ steps.calc_tag.outputs.name }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
