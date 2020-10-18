@@ -50,9 +50,6 @@ jobs:
         uses: docker/build-push-action@v2
         id: docker_build
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
           repository: ${{ github.repository_owner }}/certbot-with-dns_valuedomain
           tags: |
             latest
