@@ -36,9 +36,8 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Calc tag
         run: |
-          TAG=${{ env.GITHUB_REF }}
-          GITHUB_SHA=${{ env.GITHUB_SHA }}
-          if [ -z "$TAG" ]; then
+          TAG=${GITHUB_REF}
+          if [ -z "${TAG}" ]; then
             TAG="${GITHUB_SHA}"
           fi
           echo "::set-output name::${TAG}"
