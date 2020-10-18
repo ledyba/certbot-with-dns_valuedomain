@@ -36,11 +36,15 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Calc tag
         run: |
-          TAG=${GITHUB_REF}
-          if [ -z "${TAG}" ]; then
+          TAG=""
+          if [[ "${GITHUB_REF}" =~ ^refs/heads/.* ]]; then
+            TAG="${GITHUB_REF:11}"
+          elif [[ "${GITHUB_REF}" =~ ^refs/tags/.* ]]; then
+            TAG="${GITHUB_REF:10}"
+          elif [[ -z "${GITHUB_REF}" ]]; then
             TAG="${GITHUB_SHA}"
           fi
-          echo "::set-output name::${TAG}"
+          echo "::set-output name=name::${TAG}"
         id: calc_tag
       - name: Build and push
         uses: docker/build-push-action@v2
