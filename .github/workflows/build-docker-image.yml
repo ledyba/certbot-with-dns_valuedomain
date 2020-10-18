@@ -44,7 +44,8 @@ jobs:
           elif [[ -z "${GITHUB_REF}" ]]; then
             TAG="${GITHUB_SHA}"
           fi
-          echo "::set-output name=name::${TAG}"
+          echo "::set-output name=tag::${TAG}"
+          echo "::set-output name=sha::${GITHUB_SHA:0:8}"
         id: calc_tag
       - name: Build and push
         uses: docker/build-push-action@v2
@@ -53,6 +54,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:latest
-            ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:${{ steps.calc_tag.outputs.name }}
+            ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:${{ steps.calc_tag.outputs.tag }}
+            ghcr.io/${{ github.repository_owner }}/certbot-with-dns_valuedomain:sha-${{ steps.calc_tag.outputs.sha }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
