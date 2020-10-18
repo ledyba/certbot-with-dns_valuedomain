@@ -15,7 +15,7 @@ version: '3.7'
 services:
   certbot:
     image: 'ghcr.io/ledyba/certbot-with-dns_valuedomain:latest'
-    net: 'host'
+    network_mode: 'host'
     volumes:
       - ./data:/etc/letsencrypt
       - ./conf:/etc/certbot
