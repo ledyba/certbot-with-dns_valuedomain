@@ -54,7 +54,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
           repository: ${{ github.repository_owner }}/certbot-with-dns_valuedomain
-          no-cache: true
           tags: |
             latest
             ${{ steps.calc_tag.outputs.name }}
