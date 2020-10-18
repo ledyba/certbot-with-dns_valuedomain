@@ -55,7 +55,6 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
           repository: ${{ github.repository_owner }}/certbot-with-dns_valuedomain
           no-cache: true
-          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           tags: |
             latest
             ${{ steps.calc_tag.outputs.name }}
